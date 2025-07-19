@@ -146,7 +146,7 @@ const handleInputChange = (e) => {
 <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-black  container mx-auto p-5 rounded-lg shadow-md lg:w-12/12">
 
           <div className="flex justify-center w-full ">
-  <form className="flex flex-col items-center gap-4 mx-auto w-full md:w-1/2" onSubmit={handleSave}>
+  <form className="flex flex-col items-center gap-4 mx-auto w-full md:w-8/12" onSubmit={handleSave}>
     {/* Task Input */}
     <div className="relative w-full ">
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -211,71 +211,76 @@ const handleInputChange = (e) => {
                    {
   todos.map((todo, index) => {
     return (!todo.isCompleted || showCompleted) && (
-    <div
+   <div
   key={todo.id || index}
-  className="todo my-3 flex flex-col md:flex-row flex-wrap items-start md:items-center justify-between w-full md:w-6/12 mx-auto gap-4 p-4 border rounded shadow-sm dark:border-gray-700"
+  className="todo my-3 flex flex-col items-start md:items-center justify-between w-full max-w-2xl mx-auto gap-4 p-4 border rounded shadow-sm dark:border-gray-700"
 >
-  <div className="flex items-start gap-4 w-full md:w-auto flex-1 break-words">
-    <input
-      checked={todo.isCompleted}
-      onChange={(e) => handleChecked(e, index)}
-      type="checkbox"
-      className="w-5 h-5 mt-1"
-    />
-    <div>
-      <label
-        className={`text-lg font-semibold block ${
-          todo.isCompleted ? 'line-through opacity-50' : ''
-        }`}
-      >
-        {todo.todo}
-      </label>
+  <div className="flex flex-col sm:flex-row w-full gap-4">
+    {/* Content section */}
+    <div className="flex items-start gap-4 flex-1 min-w-0">
+      <input
+        checked={todo.isCompleted}
+        onChange={(e) => handleChecked(e, index)}
+        type="checkbox"
+        className="w-5 h-5 mt-1 flex-shrink-0"
+      />
+      <div className="min-w-0">
+        <label
+          className={`text-lg font-semibold block break-words ${
+            todo.isCompleted ? 'line-through opacity-50' : ''
+          }`}
+        >
+          {todo.todo}
+        </label>
 
-      {todo.description && (
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-          {todo.description}
-        </p>
-      )}
+        {todo.description && (
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 break-words">
+            {todo.description}
+          </p>
+        )}
 
-      {todo.assignedTo && (
-        <h5 className="text-sm text-white font-bold mt-1 block">
-          Assigned to: {todo.assignedTo}
-        </h5>
-      )}
+        {todo.assignedTo && (
+          <h5 className="text-sm text-white font-bold mt-1 block break-words">
+            Assigned to: {todo.assignedTo}
+          </h5>
+        )}
 
-      {todo.createdAt && (
-        <p className="text-xs text-gray-500 mt-1">Created At: {todo.createdAt}</p>
-      )}
+        {todo.createdAt && (
+          <p className="text-xs text-gray-500 mt-1">Created At: {todo.createdAt}</p>
+        )}
+      </div>
     </div>
+
+    {/* Image section */}
+    {todo.image && (
+      <div className="flex-shrink-0 sm:self-center">
+        <img
+          src={todo.image}
+          alt="todo"
+          className="w-20 h-20 object-cover rounded-md border dark:border-gray-600"
+        />
+      </div>
+    )}
   </div>
 
-        <div>
-          {todo.image && (
-    <img
-      src={todo.image}
-      alt="todo"
-      className="w-20 h-20 object-cover rounded-md border dark:border-gray-600"
-    />
-  )}
-  </div>
+  {/* Buttons section - now with wider buttons */}
+<div className="flex gap-2 w-full justify-end">
+  <button
+    onClick={() => handleEdit(index)}
+    type="button"
+    className="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-8 py-3 transition-all duration-200 w-full min-w-[120px] sm:w-auto sm:px-10 dark:focus:ring-green-800"
+  >
+    Edit
+  </button>
 
-  <div className="buttons flex gap-2 mt-2 md:mt-0">
-    <button
-      onClick={() => handleEdit(index)}
-      type="button"
-      className="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 dark:focus:ring-green-800"
-    >
-      Edit
-    </button>
-
-    <button
-      onClick={(e) => handleDelete(e, todo.id)}
-      type="button"
-      className="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 dark:focus:ring-red-800"
-    >
-      Delete
-    </button>
-  </div>
+  <button
+    onClick={(e) => handleDelete(e, todo.id)}
+    type="button"
+    className="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-8 py-3 transition-all duration-200 w-full min-w-[120px] sm:w-auto sm:px-10 dark:focus:ring-red-800"
+  >
+    Delete
+  </button>
+</div>
 </div>
 
     );
