@@ -38,7 +38,7 @@ export default function Modal({ fileName, onClose, todo,image, handleInputChange
   />
 
   <div className="border border-gray-500 rounded-lg px-3 py-2 text-center text-gray-300 bg-gray-700">
-    Update Image
+  {fileName ? <p>Selected file: {fileName}  </p> : <p>No File Chosen</p> }
   </div>
 </div>
 

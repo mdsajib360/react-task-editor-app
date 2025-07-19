@@ -51,7 +51,8 @@ const clearFileInput = () => {
             todo,
             image,
           assignedTo,
-          createdAt: new Date().toLocaleString().split(' ')[0]
+          createdAt: new Date().toLocaleString().split(' ')[0],
+          fileName: fileName
         };
         setTodos(updateTodos);
         setCurrentIndex(null);
@@ -66,7 +67,8 @@ const clearFileInput = () => {
             image,
             assignedTo,
           isCompleted: false,
-             createdAt: new Date().toLocaleString().split(' ')[0]
+          createdAt: new Date().toLocaleString().split(' ')[0],
+          fileName: fileName
         }]);
         
     }
@@ -85,7 +87,7 @@ const clearFileInput = () => {
         setTodo(todos[index].todo)
       setAssignedTo(todos[index].assignedTo);
       setImage(todos[index].image)
-      console.log(todos[index].image);
+      setFileName(todos[index].fileName);
       
     }
     const handleDelete =(e,id) => {
