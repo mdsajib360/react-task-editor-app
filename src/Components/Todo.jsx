@@ -213,7 +213,7 @@ const handleInputChange = (e) => {
     return (!todo.isCompleted || showCompleted) && (
    <div
   key={todo.id || index}
-  className="todo my-3 flex flex-col items-start md:items-center justify-between w-full max-w-2xl mx-auto gap-4 p-4 border rounded shadow-sm dark:border-gray-700"
+  className="todo my-3 flex flex-col items-start md:items-center justify-between w-full md:w-8/12 mx-auto gap-4 p-4 border rounded shadow-sm dark:border-gray-700"
 >
   <div className="flex flex-col sm:flex-row w-full gap-4">
     {/* Content section */}
