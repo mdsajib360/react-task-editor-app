@@ -42,8 +42,6 @@ export default function Modal({ fileName, onClose, todo,image, handleInputChange
   </div>
 </div>
 
-{fileName && <p>Selected file: {fileName}</p>}
-
 {image && (
   <div>
     <p>Image Preview:</p>
