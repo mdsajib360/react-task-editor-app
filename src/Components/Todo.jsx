@@ -72,6 +72,9 @@ const clearFileInput = () => {
         }]);
         
     }
+     const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2MB
+
+  
     setIsEditActive(false)
       setTodo('');
       clearFileInput()
@@ -118,7 +121,8 @@ const getBase64 = (file) =>
   });
 
 
-const handleImageChange = async (e) => {
+  const handleImageChange = async (e) => {
+   
   const file = e.target.files[0];
   if (file) {
     const base64 = await getBase64(file);
@@ -207,66 +211,73 @@ const handleInputChange = (e) => {
                    {
   todos.map((todo, index) => {
     return (!todo.isCompleted || showCompleted) && (
-      <div
-        key={todo.id || index}
-        className="todo  my-3 flex flex-col  md:flex-row items-start md:items-center justify-between w-full md:w-6/12 mx-auto gap-4 p-4 border rounded shadow-sm dark:border-gray-700"
+    <div
+  key={todo.id || index}
+  className="todo my-3 flex flex-col md:flex-row flex-wrap items-start md:items-center justify-between w-full md:w-6/12 mx-auto gap-4 p-4 border rounded shadow-sm dark:border-gray-700"
+>
+  <div className="flex items-start gap-4 w-full md:w-auto flex-1 break-words">
+    <input
+      checked={todo.isCompleted}
+      onChange={(e) => handleChecked(e, index)}
+      type="checkbox"
+      className="w-5 h-5 mt-1"
+    />
+    <div>
+      <label
+        className={`text-lg font-semibold block ${
+          todo.isCompleted ? 'line-through opacity-50' : ''
+        }`}
       >
-        <div className="flex items-center gap-4 w-full md:w-auto">
-          <input
-            checked={todo.isCompleted}
-            onChange={(e) => handleChecked(e, index)}
-            type="checkbox"
-            className="w-5 h-5"
-          />
-          <div>
-            <label
-              className={`text-lg font-semibold block ${
-                todo.isCompleted ? 'line-through opacity-50' : ''
-              }`}
-            >
-              {todo.todo}
-            </label>
-            {todo.description && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                {todo.description}
-              </p>
-            )}
-            {todo.assignedTo && (
-<h5 className="tex-sm text-white font-bold mt-1 block">
-  Assigned to: {todo.assignedTo}
-</h5>
+        {todo.todo}
+      </label>
 
+      {todo.description && (
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+          {todo.description}
+        </p>
+      )}
 
-            )}
-          </div>
-        </div>
+      {todo.assignedTo && (
+        <h5 className="text-sm text-white font-bold mt-1 block">
+          Assigned to: {todo.assignedTo}
+        </h5>
+      )}
 
-        {todo.image && (
-          <img
-            src={todo.image}
-            alt="todo"
-            className="w-20 h-20 object-cover rounded-md border dark:border-gray-600"
-          />
-        )}
+      {todo.createdAt && (
+        <p className="text-xs text-gray-500 mt-1">Created At: {todo.createdAt}</p>
+      )}
+    </div>
+  </div>
 
-        <div className="buttons flex gap-2 mt-2 md:mt-0">
-          <button
-            onClick={() => handleEdit( index)}
-            type="button"
-            className="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 dark:focus:ring-green-800"
-          >
-            Edit
-          </button>
+        <div>
+          {todo.image && (
+    <img
+      src={todo.image}
+      alt="todo"
+      className="w-20 h-20 object-cover rounded-md border dark:border-gray-600"
+    />
+  )}
+  </div>
 
-          <button
-            onClick={(e) => handleDelete(e, todo.id)}
-            type="button"
-            className="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 dark:focus:ring-red-800"
-          >
-            Delete
-          </button>
-        </div>
-      </div>
+  <div className="buttons flex gap-2 mt-2 md:mt-0">
+    <button
+      onClick={() => handleEdit(index)}
+      type="button"
+      className="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 dark:focus:ring-green-800"
+    >
+      Edit
+    </button>
+
+    <button
+      onClick={(e) => handleDelete(e, todo.id)}
+      type="button"
+      className="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 dark:focus:ring-red-800"
+    >
+      Delete
+    </button>
+  </div>
+</div>
+
     );
   })
 }
