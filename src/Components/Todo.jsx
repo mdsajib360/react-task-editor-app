@@ -155,7 +155,7 @@ const handleInputChange = (e) => {
       <label className="block text-sm font-bold mb-1">Description </label>
       <textarea
         onChange={handleInputChange}
-        className="w-full h-24 resize-none bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600"
+        className="w-full h-24 resize-none  border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 bg-gray-700 dark:border-gray-600"
         placeholder="Add Your Tasks description..."
         required
         value={todo}
@@ -170,7 +170,7 @@ const handleInputChange = (e) => {
         type="file"
         accept="image/*"
         onChange={handleImageChange}
-        className="w-full bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600"
+        className="w-full  border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 bg-gray-700 dark:border-gray-600"
       />
     </div>
 
@@ -180,7 +180,7 @@ const handleInputChange = (e) => {
       <select
         value={assignedTo}
         onChange={(e) => setAssignedTo(e.target.value)}
-        className="w-full bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600"
+        className="w-full  border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 bg-gray-700 dark:border-gray-600"
       >
         <option value="">Select a person</option>
         <option value="Faria">Faria</option>
